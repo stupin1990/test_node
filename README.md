@@ -1,4 +1,4 @@
-##Initial setup
+#Initial setup
 1. Create file config.js, copy content from config-sample.js to it and fill your access data.
 2. Execute file migration.sql to create database and tables
 3. npm install
