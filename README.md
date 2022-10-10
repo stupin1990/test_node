@@ -6,7 +6,7 @@
 
 ## Api endpoints
 1. GET: /list-items
-2. GET: /top-up-balance?user_id=[user_id]
+2. GET: /top-up-balance?user_id=[1,2,3]
 3. POST: /callback
   {
     "id": "string",
