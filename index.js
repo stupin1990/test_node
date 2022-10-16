@@ -1,6 +1,6 @@
 const express = require("express")
 const bodyParser = require('body-parser')
-const Func = require('./functions.js')
+const Func = require('./src/functions.js')
 
 
 const app = express()
