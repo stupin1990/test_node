@@ -5,14 +5,14 @@
 На выходе массив объектов, где указаны market_hash_name, min_price, min_price_tradable
 Полученные записи сохраняются в кеше в течении 5 минут.
 
-##2 GET /top-up-balance?user_id=[number]
+## 2. GET /top-up-balance?user_id=[number]
 Пополнить баланм пользователя через демоверсию платежной системы
 Есть 2 таблицы в бд postgres: users, payments
 Апи делает запрос по url https://demo-paygate.steaminventoryhelper.com/invoice, который через 5 секунд должен ответеть на 3-й метод апи /callback
 
 Тут создается запись в таблице payments c переданным user_id и со статусом waiting.
 
-##3 POST /callback
+## 3. POST /callback
 Этот метод в теле запроса принимает следующие данные:
 id: string (id который вернуло апи demo-paygate на предыдущем этапе)
 status: 'paid' | 'refused' (стату платежа)
