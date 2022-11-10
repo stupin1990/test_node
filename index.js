@@ -11,8 +11,7 @@ express.use(BodyParser.raw())
 let app = new App()
 
 express.use(function(request, response, next){
-    app.setRequest(request);
-    app.setResponse(response);
+    app.setParams(request, response);
     next();
 });
 

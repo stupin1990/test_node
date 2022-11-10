@@ -1,4 +1,4 @@
-const Data = function(pool) {
+module.exports = function(pool) {
     return {
         getItemsFromCache: async function() {
             try {
@@ -29,5 +29,3 @@ const Data = function(pool) {
         }
     }
 }
-
-module.exports = Data
