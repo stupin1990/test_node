@@ -1,30 +1,35 @@
-const express = require("express")
-const bodyParser = require('body-parser')
-const Func = require('./src/functions.js')
+const Express = require("express")
+const BodyParser = require('body-parser')
+const App = require('./src/app.js')
 
+const express = Express()
 
-const app = express()
+express.use(BodyParser.urlencoded({ extended: true }))
+express.use(BodyParser.json())
+express.use(BodyParser.raw())
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-app.use(bodyParser.raw())
+let app = new App()
 
+express.use(function(request, response, next){
+    app.setRequest(request);
+    app.setResponse(response);
+    next();
+});
 
-
-app.get("/list-items", async function(request, response) {
-    let data = await Func.getItemsMinPrices()
+express.get("/list-items", async function(request, response) {
+    let data = await app.getItemsMinPrices()
     return response.json(data)
 })
 
-app.get("/top-up-balance", async function(request, response) {
-    let data = await Func.topUpBalance(request)
+express.get("/top-up-balance", async function(request, response) {
+    let data = await app.topUpBalance()
     return response.json(data)
 })
 
-app.post("/callback", async function(request, response) {
-    let data = await Func.topUpBalanceCallback(request)
+express.post("/callback", async function(request, response) {
+    let data = await app.topUpBalanceCallback()
     return response.json(data)
 })
 
 
-app.listen(3000)
+express.listen(3000)
