@@ -1,6 +1,3 @@
-const axios = require('axios')
-const Config = require("../config.js");
-
 module.exports = function(pool) {
     return {
         topUpBalance: async function() {
@@ -25,9 +22,9 @@ module.exports = function(pool) {
                     }
                 }
 
-                let data = Config.local_ip ? {ip: Config.local_ip} : {}
+                let data = this.Config.local_ip ? {ip: this.Config.local_ip} : {}
 
-                let resp = await axios.post(Config.topup_invoice_url, data)
+                let resp = await this.axios.post(this.Config.topup_invoice_url, data)
                 if (resp.data.success) {
                     await pool.query("INSERT INTO payments (user_id, payment_id) VALUES ($1, $2)", [user_id, resp.data.id])
 

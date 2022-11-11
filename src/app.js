@@ -1,6 +1,7 @@
 const { Pool } = require('pg')
+const axios = require('axios')
 const Config = require("./config.js")
-const Cache = require("./modules/cache.js");
+const Cache = require("./modules/cache.js")
 const Items = require("./modules/items.js")
 const Balance = require("./modules/balance.js")
 
@@ -9,6 +10,8 @@ const cache = new Cache(pool)
 
 module.exports = function () {
     return {
+        Config: Config,
+        axios: axios,
         setParams: function(req, res) {
             this.request = req
             this.response = res
